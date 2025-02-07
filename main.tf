@@ -38,3 +38,17 @@ resource "aws_instance" "web" {
     Name = "terraform-atlantis"
   }
 }
+
+variable "cidr_block" {
+    default = "10.0.0.0/18"
+  
+}
+
+resource "aws_vpc" "main" {
+ cidr_block           = var.cidr_block
+ enable_dns_hostnames = true
+ tags = {
+   name = "main"
+ }
+}
+
